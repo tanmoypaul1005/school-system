@@ -9,7 +9,43 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
+  password  String
   name      String?
+  role      Role     @default(STUDENT)
+  isEmailVerified Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  SUB_ADMIN
+
+  STUDENT
+  TEACHER
+
+  PRINCIPAL
+  VICE_PRINCIPAL
+  COORDINATOR
+
+  ACCOUNTANT
+  LIBRARIAN
+  RECEPTIONIST
+
+  GUARDIAN
+  PARENT
+
+  STAFF
+  EMPLOYEE
+
+  EXAMINER
+  MODERATOR
+
+  CONTENT_CREATOR
+
+  DRIVER
+  DELIVERY_MAN
+
+  HR
 }
