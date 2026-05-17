@@ -10,7 +10,6 @@ export class SectionService {
         return this.prisma.section.findMany({
             include: {
                 class: true,
-                students: true,
             },
         });
     }

@@ -7,11 +7,8 @@ export class ClassService {
 
     async getAllClasses() {
         return this.prisma.class.findMany({
-            include: {
-                students: true,
-                teacher: true,
-            },
+        
         });
     }
-    
+
 }
