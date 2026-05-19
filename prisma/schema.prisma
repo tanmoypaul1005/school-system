@@ -81,7 +81,6 @@ model Course {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([sectionId, name])
   @@unique([code])
 }
 
@@ -91,7 +90,6 @@ model Section {
 
   classId     String
   class       Class     @relation(fields: [classId], references: [id], onDelete: Cascade)
-  courses     Course[]
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

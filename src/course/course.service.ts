@@ -7,11 +7,7 @@ export class CourseService {
     constructor(private readonly prisma: PrismaService) {}
 
     async getAllCourses() {
-        return this.prisma.course.findMany({
-            include: {
-                section: true,
-            },
-        });
+        return this.prisma.course.findMany();
     }
 
     async createCourse(dto: CreateCourseDto) {
