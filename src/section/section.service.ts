@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { CreateSectionDto } from './dto/create-section.dto';
 
 @Injectable()
 export class SectionService {
@@ -11,6 +12,12 @@ export class SectionService {
             include: {
                 class: true,
             },
+        });
+    }
+
+    async createSection(dto: CreateSectionDto) {
+        return this.prisma.section.create({
+            data: dto,
         });
     }
 }
