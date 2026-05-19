@@ -16,6 +16,7 @@ export class ClassService {
         return this.prisma.class.create({
             data: {
                 name: dto.name,
+                numericName: dto.numericName,
             },
         });
     }
