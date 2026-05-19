@@ -8,6 +8,4 @@ export class CreateCourseDto {
   @IsString()
   code?: string;
 
-  @IsUUID()
-  sectionId: string;
 }

@@ -9,7 +9,4 @@ export class UpdateCourseDto {
   @IsString()
   code?: string;
 
-  @IsOptional()
-  @IsUUID()
-  sectionId?: string;
 }
