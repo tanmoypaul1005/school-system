@@ -27,5 +27,17 @@ services:
     ports:
       - "3001:3000"
 
+  prisma-studio:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    command: ["npx", "prisma", "studio", "--port", "5555", "--browser", "none"]
+    ports:
+      - "5555:5555"
+
 volumes:
   db_data:
