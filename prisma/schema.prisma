@@ -73,12 +73,28 @@ model Class {
   @@unique([name])
 }
 
+model Course {
+  id        String   @id @default(uuid())
+  name      String
+  code      String?
+
+  sectionId String
+  section   Section  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([sectionId, name])
+  @@unique([code])
+}
+
 model Section {
   id          String    @id @default(uuid())
   name        String // Example: A, B, C
 
   classId     String
   class       Class     @relation(fields: [classId], references: [id], onDelete: Cascade)
+  courses     Course[]
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
