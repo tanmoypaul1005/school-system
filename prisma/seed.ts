@@ -36,6 +36,13 @@ async function main() {
     };
   });
 
+  const classes = Array.from({ length: 10 }, (_, index) => {
+    return {
+      name: `Class ${index + 1}`,
+      numericName: index + 1,
+    };
+  });
+
   await prisma.course.createMany({
     data: courses,
     skipDuplicates: true,
@@ -43,6 +50,29 @@ async function main() {
 
   await prisma.user.createMany({
     data: teachers,
+    skipDuplicates: true,
+  });
+
+  await prisma.class.createMany({
+    data: classes,
+    skipDuplicates: true,
+  });
+
+  const dbClasses = await prisma.class.findMany({
+    select: { id: true },
+    orderBy: { numericName: 'asc' },
+  });
+
+  const sectionNames = ['A', 'B', 'C'];
+  const sections = dbClasses.flatMap((item) => {
+    return sectionNames.map((name) => ({
+      name,
+      classId: item.id,
+    }));
+  });
+
+  await prisma.section.createMany({
+    data: sections,
     skipDuplicates: true,
   });
 }
