@@ -8,9 +8,10 @@ import { ClassModule } from './class/class.module';
 import { SectionModule } from './section/section.module';
 import { CourseModule } from './course/course.module';
 import { CourseAssignModule } from './course-assign/course-assign.module';
+import { ClassSlotModule } from './class-slot/class-slot.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule],
+  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule, ClassSlotModule],
   controllers: [AppController],
   providers: [AppService],
 })
