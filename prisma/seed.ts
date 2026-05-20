@@ -1,4 +1,6 @@
 import { PrismaClient, Role } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 import bcrypt from 'bcryptjs';
 
 const databaseUrl = process.env.DATABASE_URL;
@@ -6,7 +8,11 @@ if (!databaseUrl) {
   throw new Error('DATABASE_URL is not set for Prisma seed');
 }
 
-const prisma = new PrismaClient();
+const pool = new Pool({
+  connectionString: databaseUrl,
+});
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   const passwordHash = await bcrypt.hash('password123', 10);
@@ -44,9 +50,11 @@ async function main() {
 main()
   .then(async () => {
     await prisma.$disconnect();
+    await pool.end();
   })
   .catch(async (error) => {
     console.error(error);
     await prisma.$disconnect();
+    await pool.end();
     process.exit(1);
   });

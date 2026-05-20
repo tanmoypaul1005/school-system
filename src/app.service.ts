@@ -6,7 +6,7 @@ export class AppService {
   constructor(private readonly prisma: PrismaService) {}
 
   getHello(): string {
-    return 'Hello World! This is a NestJS application with Prisma ORM.';
+    return 'Hello World! 999 8888  000';
   }
 
   getUsers() {
