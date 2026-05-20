@@ -130,8 +130,8 @@ model CourseAssign {
 
 model ClassSlot {
   id        String   @id @default(uuid())
-  startTime DateTime
-  endTime   DateTime
+  startTime String
+  endTime   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

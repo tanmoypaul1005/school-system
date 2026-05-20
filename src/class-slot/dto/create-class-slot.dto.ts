@@ -1,9 +1,9 @@
-import { IsDateString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class CreateClassSlotDto {
-  @IsDateString()
+  @IsString()
   startTime: string;
 
-  @IsDateString()
+  @IsString()
   endTime: string;
 }

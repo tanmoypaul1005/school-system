@@ -14,8 +14,8 @@ export class ClassSlotService {
     async createClassSlot(dto: CreateClassSlotDto) {
         return this.prisma.classSlot.create({
             data: {
-                startTime: new Date(dto.startTime),
-                endTime: new Date(dto.endTime),
+                startTime: dto.startTime,
+                endTime: dto.endTime,
             },
         });
     }
@@ -24,8 +24,8 @@ export class ClassSlotService {
         return this.prisma.classSlot.update({
             where: { id },
             data: {
-                startTime: dto.startTime ? new Date(dto.startTime) : undefined,
-                endTime: dto.endTime ? new Date(dto.endTime) : undefined,
+                startTime: dto.startTime,
+                endTime: dto.endTime,
             },
         });
     }

@@ -1,11 +1,11 @@
-import { IsDateString, IsOptional } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class UpdateClassSlotDto {
   @IsOptional()
-  @IsDateString()
+  @IsString()
   startTime?: string;
 
   @IsOptional()
-  @IsDateString()
+  @IsString()
   endTime?: string;
 }
