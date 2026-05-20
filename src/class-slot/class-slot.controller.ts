@@ -1,4 +1,16 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('class-slot')
-export class ClassSlotController {}
+export class ClassSlotController {
+
+    @Get('')
+    async getAllClassSlots() {
+        return this.prisma.classSlot.findMany({
+            include: {
+                class: true,
+                section: true,
+                teacher: true,
+            },
+        });
+    }
+}
