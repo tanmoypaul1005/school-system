@@ -6,9 +6,7 @@ if (!databaseUrl) {
   throw new Error('DATABASE_URL is not set for Prisma seed');
 }
 
-const prisma = new PrismaClient({
-  datasourceUrl: databaseUrl,
-});
+const prisma = new PrismaClient();
 
 async function main() {
   const passwordHash = await bcrypt.hash('password123', 10);
