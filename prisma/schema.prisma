@@ -127,3 +127,12 @@ model CourseAssign {
   @@index([teacherId])
   @@unique([courseId, classId, sectionId, teacherId])
 }
+
+model ClassSlot {
+  id        String   @id @default(uuid())
+  startTime DateTime
+  endTime   DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
