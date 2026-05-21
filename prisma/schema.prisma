@@ -67,7 +67,6 @@ model Class {
   numericName Int? // Example: 1,2,3...
 
   sections    Section[]
-  courseAssignments CourseAssign[]
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -106,7 +105,6 @@ model Section {
 model CourseAssign {
   id        String   @id @default(uuid())
   courseId  String
-  classId   String
   sectionId String?
   classSlotId String?
   teacherId String
@@ -115,7 +113,6 @@ model CourseAssign {
   isActive  Boolean  @default(true)
 
   course   Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  class    Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
   section  Section? @relation(fields: [sectionId], references: [id], onDelete: SetNull)
   classSlot ClassSlot? @relation(fields: [classSlotId], references: [id], onDelete: SetNull)
   teacher  User    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
@@ -124,11 +121,10 @@ model CourseAssign {
   updatedAt DateTime @updatedAt
 
   @@index([courseId])
-  @@index([classId])
   @@index([sectionId])
   @@index([classSlotId])
   @@index([teacherId])
-  @@unique([courseId, classId, sectionId, teacherId])
+  @@unique([courseId, sectionId, teacherId])
 }
 
 model ClassSlot {

@@ -4,9 +4,6 @@ export class CreateCourseAssignDto {
   @IsUUID()
   courseId: string;
 
-  @IsUUID()
-  classId: string;
-
   @IsOptional()
   @IsUUID()
   sectionId?: string;

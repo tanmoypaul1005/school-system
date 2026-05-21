@@ -7,10 +7,6 @@ export class UpdateCourseAssignDto {
 
   @IsOptional()
   @IsUUID()
-  classId?: string;
-
-  @IsOptional()
-  @IsUUID()
   sectionId?: string;
 
   @IsOptional()

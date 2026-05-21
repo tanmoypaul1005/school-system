@@ -11,7 +11,6 @@ export class CourseAssignService {
 		return this.prisma.courseAssign.findMany({
 			include: {
 				course: true,
-				class: true,
 				section: true,
 				classSlot: true,
 				teacher: true,
@@ -20,12 +19,11 @@ export class CourseAssignService {
 	}
 
 	async createAssignment(dto: CreateCourseAssignDto) {
-		const { courseId, classId, sectionId, classSlotId, teacherId, startDate, endDate, isActive } = dto;
+		const { courseId, sectionId, classSlotId, teacherId, startDate, endDate, isActive } = dto;
 
 		return this.prisma.courseAssign.create({
 			data: {
 				courseId,
-				classId,
 				sectionId: sectionId ?? null,
 				classSlotId: classSlotId ?? null,
 				teacherId,
