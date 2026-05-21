@@ -21,6 +21,32 @@ export class CourseAssignService {
 	async createAssignment(dto: CreateCourseAssignDto) {
 		const { courseId, sectionId, classSlotId, teacherId, startDate, endDate, isActive } = dto;
 
+        const exisitingClass= await this.prisma.findFirst({
+            where:{
+                sectionId: sectionId,
+            }
+        })
+
+        const exsitingTeacher=await this.prisma.courseAssign.findFirst({
+            where:{
+                teacherId: teacherId,
+            }
+        })
+
+        if(exsitingTeacher && exsitingTeacher.teacherId === teacherId){
+            throw new Error('This teacher is already assigned to another class. Please choose a different teacher or section.');
+        }
+
+        if(exisitingClass.classSlotId === classSlotId){
+            throw new Error('This class slot is already assigned to another section. Please choose a different class slot or section.');
+        }
+
+        if(exisitingClass.courseId === courseId){
+            throw new Error('This course is already assigned to another section. Please choose a different course or section.');
+        }
+
+        
+
 		return this.prisma.courseAssign.create({
 			data: {
 				courseId,
