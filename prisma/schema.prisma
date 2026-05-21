@@ -108,6 +108,7 @@ model CourseAssign {
   courseId  String
   classId   String
   sectionId String?
+  classSlotId String?
   teacherId String
   startDate DateTime?
   endDate   DateTime?
@@ -116,6 +117,7 @@ model CourseAssign {
   course   Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
   class    Class   @relation(fields: [classId], references: [id], onDelete: Cascade)
   section  Section? @relation(fields: [sectionId], references: [id], onDelete: SetNull)
+  classSlot ClassSlot? @relation(fields: [classSlotId], references: [id], onDelete: SetNull)
   teacher  User    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
@@ -124,6 +126,7 @@ model CourseAssign {
   @@index([courseId])
   @@index([classId])
   @@index([sectionId])
+  @@index([classSlotId])
   @@index([teacherId])
   @@unique([courseId, classId, sectionId, teacherId])
 }
@@ -132,6 +135,8 @@ model ClassSlot {
   id        String   @id @default(uuid())
   startTime String
   endTime   String
+
+  courseAssignments CourseAssign[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

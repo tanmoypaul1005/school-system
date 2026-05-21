@@ -11,6 +11,10 @@ export class CreateCourseAssignDto {
   @IsUUID()
   sectionId?: string;
 
+  @IsOptional()
+  @IsUUID()
+  classSlotId?: string;
+
   @IsUUID()
   teacherId: string;
 

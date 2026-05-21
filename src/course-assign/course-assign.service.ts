@@ -13,19 +13,21 @@ export class CourseAssignService {
 				course: true,
 				class: true,
 				section: true,
+				classSlot: true,
 				teacher: true,
 			},
 		});
 	}
 
 	async createAssignment(dto: CreateCourseAssignDto) {
-		const { courseId, classId, sectionId, teacherId, startDate, endDate, isActive } = dto;
+		const { courseId, classId, sectionId, classSlotId, teacherId, startDate, endDate, isActive } = dto;
 
 		return this.prisma.courseAssign.create({
 			data: {
 				courseId,
 				classId,
 				sectionId: sectionId ?? null,
+				classSlotId: classSlotId ?? null,
 				teacherId,
 				startDate: startDate ? new Date(startDate) : undefined,
 				endDate: endDate ? new Date(endDate) : undefined,

@@ -15,6 +15,10 @@ export class UpdateCourseAssignDto {
 
   @IsOptional()
   @IsUUID()
+  classSlotId?: string;
+
+  @IsOptional()
+  @IsUUID()
   teacherId?: string;
 
   @IsOptional()
