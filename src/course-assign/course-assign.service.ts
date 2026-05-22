@@ -46,7 +46,6 @@ export class CourseAssignService {
         }
 
         
-
 		return this.prisma.courseAssign.create({
 			data: {
 				courseId,
