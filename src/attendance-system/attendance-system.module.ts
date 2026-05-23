@@ -4,6 +4,7 @@ import { AttendanceSystemService } from './attendance-system.service';
 
 @Module({
   controllers: [AttendanceSystemController],
+  
   providers: [AttendanceSystemService]
 })
 export class AttendanceSystemModule {}
