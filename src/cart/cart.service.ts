@@ -14,6 +14,20 @@ export class CartService {
             }
         });
 
+        if(!product){
+            throw new Error('Product not found');
+        }
+
+        const existingCart=await this.prisma.cart.findFirst({
+            where:{
+                userId:createCartDto.userId,
+                productId:createCartDto.productId,
+                isActive:true,
+            }
+        });
+
+        
+
         return this.prisma.cart.create({
             data: createCartDto,
         });
