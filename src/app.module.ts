@@ -10,9 +10,10 @@ import { CourseModule } from './course/course.module';
 import { CourseAssignModule } from './course-assign/course-assign.module';
 import { ClassSlotModule } from './class-slot/class-slot.module';
 import { AttendanceSystemModule } from './attendance-system/attendance-system.module';
+import { StudentAssignModule } from './student-assign/student-assign.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule, ClassSlotModule, AttendanceSystemModule],
+  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule, ClassSlotModule, AttendanceSystemModule, StudentAssignModule],
   controllers: [AppController],
   providers: [AppService],
 })
