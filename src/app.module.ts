@@ -14,9 +14,10 @@ import { StudentAssignModule } from './student-assign/student-assign.module';
 import { ProductsService } from './products/products.service';
 import { ProductsController } from './products/products.controller';
 import { ProductsModule } from './products/products.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule, ClassSlotModule, AttendanceSystemModule, StudentAssignModule, ProductsModule],
+  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule, ClassSlotModule, AttendanceSystemModule, StudentAssignModule, ProductsModule, CartModule],
   controllers: [AppController, ProductsController],
   providers: [AppService, ProductsService],
 })
