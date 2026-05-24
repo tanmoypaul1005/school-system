@@ -1,7 +1,6 @@
-import { PrismaClient, Role } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
-import bcrypt from 'bcryptjs';
 
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
@@ -15,64 +14,23 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const passwordHash = await bcrypt.hash('password123', 10);
+  const products = Array.from({ length: 200 }, (_, index) => {
+    const num = String(index + 1).padStart(4, '0');
+    const price = Number((Math.random() * 490 + 10).toFixed(2));
+    const stock = Math.floor(Math.random() * 201);
 
-  const courses = Array.from({ length: 20 }, (_, index) => {
-    const num = String(index + 1).padStart(3, '0');
     return {
-      name: `Course ${index + 1}`,
-      code: `CRS-${num}`,
+      name: `Product ${index + 1}`,
+      description: `Product ${index + 1} description`,
+      sku: `PRD-${num}`,
+      price,
+      stock,
+      isActive: Math.random() > 0.1,
     };
   });
 
-  const teachers = Array.from({ length: 20 }, (_, index) => {
-    const num = String(index + 1).padStart(2, '0');
-    return {
-      name: `Teacher ${index + 1}`,
-      email: `teacher${num}@school.local`,
-      password: passwordHash,
-      role: Role.TEACHER,
-      isEmailVerified: true,
-    };
-  });
-
-  const classes = Array.from({ length: 10 }, (_, index) => {
-    return {
-      name: `Class ${index + 1}`,
-      numericName: index + 1,
-    };
-  });
-
-  await prisma.course.createMany({
-    data: courses,
-    skipDuplicates: true,
-  });
-
-  await prisma.user.createMany({
-    data: teachers,
-    skipDuplicates: true,
-  });
-
-  await prisma.class.createMany({
-    data: classes,
-    skipDuplicates: true,
-  });
-
-  const dbClasses = await prisma.class.findMany({
-    select: { id: true },
-    orderBy: { numericName: 'asc' },
-  });
-
-  const sectionNames = ['A', 'B', 'C'];
-  const sections = dbClasses.flatMap((item) => {
-    return sectionNames.map((name) => ({
-      name,
-      classId: item.id,
-    }));
-  });
-
-  await prisma.section.createMany({
-    data: sections,
+  await prisma.product.createMany({
+    data: products,
     skipDuplicates: true,
   });
 }
