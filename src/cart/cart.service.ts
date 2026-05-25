@@ -26,11 +26,17 @@ export class CartService {
             }
         });
 
-        
+        if(existingCart){
 
+        }else{
         return this.prisma.cart.create({
             data: createCartDto,
         });
+        }
+
+        
+
+
     }
 
     
