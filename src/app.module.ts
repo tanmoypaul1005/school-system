@@ -15,9 +15,10 @@ import { ProductsService } from './products/products.service';
 import { ProductsController } from './products/products.controller';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
-  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule, ClassSlotModule, AttendanceSystemModule, StudentAssignModule, ProductsModule, CartModule],
+  imports: [PrismaModule, UserModule, AuthModule, ClassModule, SectionModule, CourseModule, CourseAssignModule, ClassSlotModule, AttendanceSystemModule, StudentAssignModule, ProductsModule, CartModule, OrderModule],
   controllers: [AppController, ProductsController],
   providers: [AppService, ProductsService],
 })
