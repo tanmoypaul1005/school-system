@@ -44,4 +44,8 @@ export class CartService {
             });
         }
     }
+
+    async findAll() {
+        return this.prisma.cart.findMany();
+    }
 }
