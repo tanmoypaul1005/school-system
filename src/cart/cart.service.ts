@@ -48,4 +48,13 @@ export class CartService {
     async findAll() {
         return this.prisma.cart.findMany();
     }
+
+    async updateCart(id: number, updateCartDto: CreateCartDto) {
+        return this.prisma.cart.update({
+            where: {
+                id,
+            },
+            data: updateCartDto,
+        });
+    }
 }
