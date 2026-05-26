@@ -29,6 +29,15 @@ export class CartService {
 
         if (existingCart) {
 
+            return this.prisma.cart.update({
+                where: {
+                    id: existingCart.id,
+                },
+                data: {
+                    quantity: existingCart.quantity + (createCartDto.quantity || 1),
+                },
+            });
+
         } else {
             return this.prisma.cart.create({
                 data: createCartDto,
