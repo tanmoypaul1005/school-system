@@ -44,4 +44,27 @@ export class CartService {
             });
         }
     }
+
+    async findAll() {
+        return this.prisma.cart.findMany();
+    }
+
+    async updateCart(id: number, updateCartDto: CreateCartDto) {
+        const product = await this.prisma.product.findFirst({
+            where: {
+                id: updateCartDto.productId,
+            }
+        });
+
+        if (!product) {
+            throw new Error('Product not found');
+        }
+
+        return this.prisma.cart.update({
+            where: {
+                id,
+            },
+            data: updateCartDto,
+        });
+    }
 }
