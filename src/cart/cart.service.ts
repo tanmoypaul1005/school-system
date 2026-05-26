@@ -4,35 +4,35 @@ import { CreateCartDto } from './dto/create-cart.dto';
 
 @Injectable()
 export class CartService {
-    
-    constructor(private readonly prisma:PrismaClient) {}
+
+    constructor(private readonly prisma: PrismaClient) { }
 
     async createCart(createCartDto: CreateCartDto) {
 
-        const product=await this.prisma.product.findFirst({
-            where:{
-                id:createCartDto.productId,
+        const product = await this.prisma.product.findFirst({
+            where: {
+                id: createCartDto.productId,
             }
         });
 
-        if(!product){
+        if (!product) {
             throw new Error('Product not found');
         }
 
-        const existingCart=await this.prisma.cart.findFirst({
-            where:{
-                userId:createCartDto.userId,
-                productId:createCartDto.productId,
-                isActive:true,
+        const existingCart = await this.prisma.cart.findFirst({
+            where: {
+                userId: createCartDto.userId,
+                productId: createCartDto.productId,
+                isActive: true,
             }
         });
 
-        if(existingCart){
+        if (existingCart) {
 
-        }else{
-        return this.prisma.cart.create({
-            data: createCartDto,
-        });
+        } else {
+            return this.prisma.cart.create({
+                data: createCartDto,
+            });
         }
     }
 }
