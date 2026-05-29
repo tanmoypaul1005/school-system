@@ -14,6 +14,7 @@ import bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
+  
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
