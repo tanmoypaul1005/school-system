@@ -14,7 +14,7 @@ import bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
-  
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
@@ -146,4 +146,5 @@ export class AuthService {
   private signToken(userId: string, email: string, role: string) {
     return this.jwtService.signAsync({ sub: userId, email, role });
   }
+  
 }
