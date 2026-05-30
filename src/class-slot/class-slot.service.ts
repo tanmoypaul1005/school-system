@@ -5,6 +5,7 @@ import { UpdateClassSlotDto } from './dto/update-class-slot.dto';
 
 @Injectable()
 export class ClassSlotService {
+    
     constructor(private readonly prisma: PrismaService) {}
 
     async getAllClassSlots() {
