@@ -4,6 +4,7 @@ import { CreateClassDto } from './dto/create-class.dto';
 
 @Controller('class')
 export class ClassController {
+    
     constructor(private readonly classService: ClassService) {}
 
     @Get('')
