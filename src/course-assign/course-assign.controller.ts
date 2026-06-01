@@ -5,6 +5,7 @@ import { UpdateCourseAssignDto } from './dto/update-course-assign.dto';
 
 @Controller('course-assign')
 export class CourseAssignController {
+	
 	constructor(private readonly courseAssignService: CourseAssignService) {}
 
 	@Get('')
