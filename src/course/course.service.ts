@@ -4,6 +4,7 @@ import { CreateCourseDto } from './dto/create-course.dto';
 
 @Injectable()
 export class CourseService {
+    
     constructor(private readonly prisma: PrismaService) {}
 
     async getAllCourses() {
