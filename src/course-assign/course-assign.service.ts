@@ -5,6 +5,7 @@ import { UpdateCourseAssignDto } from './dto/update-course-assign.dto';
 
 @Injectable()
 export class CourseAssignService {
+	
 	constructor(private readonly prisma: PrismaService) {}
 
 	async getAllAssignments() {
@@ -74,5 +75,5 @@ export class CourseAssignService {
 			},
 		});
 	}
-	
+
 }
