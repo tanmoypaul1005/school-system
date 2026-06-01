@@ -1,6 +1,7 @@
 import { IsBoolean, IsInt, IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
 export class CreateProductDto {
+  
   @IsString()
   name: string;
 
