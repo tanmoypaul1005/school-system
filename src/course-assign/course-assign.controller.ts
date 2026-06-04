@@ -23,5 +23,4 @@ export class CourseAssignController {
 	async updateAssignment(@Param('id') id: string, @Body() dto: UpdateCourseAssignDto) {
 		return this.courseAssignService.updateAssignment(id, dto);
 	}
-	
 }
