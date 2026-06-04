@@ -3,6 +3,7 @@ import { ClassService } from './class.service';
 import { CreateClassDto } from './dto/create-class.dto';
 
 @Controller('class')
+
 export class ClassController {
     
     constructor(private readonly classService: ClassService) {}
