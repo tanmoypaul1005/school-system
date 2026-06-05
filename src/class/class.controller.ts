@@ -17,4 +17,5 @@ export class ClassController {
     async createClass(@Body() dto: CreateClassDto) {
         return this.classService.createClass(dto);
     }
+    
 }
