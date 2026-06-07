@@ -3,6 +3,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateClassDto } from './dto/create-class.dto';
 
 @Injectable()
+
 export class ClassService {
     
     constructor(private readonly prisma:PrismaService) {}
